@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <h1>Employee Dashboard</h1>
+  <div class="logoutbtn">
+    <button id="signoutbtn">Logout</button>
+  </div>
+
+  <!-- Add Employee Form -->
+  <form id="addEmployeeForm">
+    <h2>Add Employee</h2>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" required><br>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br>
+
+    <label for="department">Department:</label>
+    <select id="department" required>
+      <option value="Tech">Tech</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Operations">Operations</option>
+    </select><br>
+
+    <label for="salary">Salary:</label>
+    <input type="number" id="salary" required><br>
+
+    <button type="submit">Add Employee</button>
+  </form>
+
+  <!-- Employee Table -->
+  <h2>Employee List</h2>
+  <table id="employeeTable">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="employeeTableBody">
+      <!-- Employee data will be dynamically inserted here -->
+    </tbody>
+  </table>
+
+  <!-- Pagination Buttons -->
+  <div id="pagination">
+    <button id="previousButton">Previous</button>
+    <button id="nextButton">Next</button>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
