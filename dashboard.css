@@ -1,83 +1,160 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f9;
   }
   
   h1 {
     text-align: center;
+    margin: 20px 0;
+    color: #333;
   }
   
-  h2 {
-    margin-top: 30px;
+  .logoutbtn {
+    text-align: right;
+    margin: 10px;
   }
   
-  form {
+  #addEmployeeForm {
+    margin-bottom: 20px;
     background-color: #fff;
     padding: 20px;
-    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  form label {
+  #addEmployeeForm h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  #addEmployeeForm label {
     display: block;
     margin-bottom: 5px;
+    color: #555;
   }
   
-  form input,
-  form select {
+  #addEmployeeForm input[type="text"],
+  #addEmployeeForm input[type="email"],
+  #addEmployeeForm select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    padding: 8px;
     border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    font-family: inherit;
   }
   
-  form button {
-    padding: 10px 20px;
+  #addEmployeeForm input[type="number"] {
+    width: 100px;
+  }
+  
+  #addEmployeeForm button[type="submit"] {
+    padding: 8px 16px;
     background-color: #4caf50;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     cursor: pointer;
   }
   
-  table {
+  #filterSearch,
+  #sort {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #filterSearch label,
+  #sort label {
+    margin-right: 10px;
+    color: #555;
+  }
+  
+  #filterSearchButton,
+  #sortButton {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  #employeeTable {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
     background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  table th,
-  table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  table th {
-    background-color: #f2f2f2;
+  #employeeTable th,
+  #employeeTable td {
+    padding: 12px;
+    border: 1px solid #ccc;
     text-align: left;
   }
   
-  table tr:hover {
-    background-color: #f9f9f9;
+  #employeeTable th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  #employeeTable td:nth-child(5) {
+    text-align: right;
+  }
+  
+  #pagination {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #pagination button {
+    margin: 5px;
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  #pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
   
   .editButton,
   .deleteButton {
-    padding: 5px 10px;
+    padding: 6px 12px;
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     cursor: pointer;
   }
   
-  .editButton {
-    background-color: #ffc107;
-    margin-right: 5px;
+  .deleteButton {
+    background-color: #dc3545;
+    margin-left: 5px;
   }
   
-  .logoutbtn{
-    display: flex;
-    justify-content: flex-end;
+  .error-message {
+    color: red;
+    margin-top: 10px;
   }
+  
+  /* Media Queries */
+  @media (max-width: 600px) {
+    #addEmployeeForm {
+      padding: 10px;
+    }
+  
+    #addEmployeeForm input[type="number"] {
+      width: 80px;
+    }
+  }
+  
