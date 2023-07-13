@@ -200,7 +200,6 @@ function attachEditEventListeners() {
   
   // Function to handle edit button click
   function handleEdit(event) {
-      alert('editbtnclicked')
     const employeeId = event.target.dataset.id;
     window.location.href = `./employee.html?id=${employeeId}`;
   }
