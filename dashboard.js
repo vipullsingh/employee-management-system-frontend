@@ -2,13 +2,13 @@
 let token = localStorage.getItem('token')
 if (token == null) {
     alert('Login First')
-    window.location.href = './login.html'
+    window.location.href = './index.html'
 }
 
 const logoutbtn = document.getElementById('signoutbtn')
 logoutbtn.addEventListener('click', () => {
     localStorage.removeItem('token')
-    window.location.href = './login.html'
+    window.location.href = './index.html'
 })
 // Constants for API endpoints
 const BASE_URL = 'https://employee-mangement-system.onrender.com'; 
