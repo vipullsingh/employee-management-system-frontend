@@ -65,6 +65,7 @@ async function loadEmployees() {
     populateEmployeeTable(results);
     updatePaginationButtons(previous, next);
     attachDeleteEventListeners();
+    attachEditEventListeners();
   } catch (error) {
     console.error('Error loading employees:', error);
   }
@@ -188,6 +189,22 @@ function attachDeleteEventListeners() {
       button.addEventListener('click', handleDelete);
     });
   }
+
+  // Function to attach event listeners for edit buttons
+function attachEditEventListeners() {
+    const editButtons = document.getElementsByClassName('editButton');
+    Array.from(editButtons).forEach((button) => {
+      button.addEventListener('click', handleEdit);
+    });
+  }
+  
+  // Function to handle edit button click
+  function handleEdit(event) {
+      alert('editbtnclicked')
+    const employeeId = event.target.dataset.id;
+    window.location.href = `./employee.html?id=${employeeId}`;
+  }
+
 // Function to handle delete button click
 async function handleDelete(event) {
     const employeeId = event.target.dataset.id;

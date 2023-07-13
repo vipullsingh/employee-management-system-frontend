@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Employee</title>
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+</style>
+<body>
+  <h1>Edit Employee</h1>
+
+  <form id="editEmployeeForm">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" required><br>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br>
+
+    <label for="department">Department:</label>
+    <input type="text" id="department" required><br>
+
+    <label for="salary">Salary:</label>
+    <input type="number" id="salary" required><br>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <script>
+    const BASE_URL = 'https://employee-mangement-system.onrender.com'; 
+const EMPLOYEE_API = `${BASE_URL}/api/employees`;
+    const employeeId = getEmployeeIdFromQueryParams();
+
+    // Function to get the employee ID from the query parameters
+    function getEmployeeIdFromQueryParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('id');
+    }
+
+    // Function to fetch employee data by ID
+    async function getEmployeeById(employeeId) {
+      try {
+        const response = await fetch(`${EMPLOYEE_API}/${employeeId}`);
+        const data = await response.json();
+        return data.employee;
+      } catch (error) {
+        console.error('Error getting employee:', error);
+        throw error;
+      }
+    }
+
+    // Function to update an employee
+    async function updateEmployee(employeeId, employeeData) {
+      try {
+        const response = await fetch(`${EMPLOYEE_API}/${employeeId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(employeeData),
+        });
+        const data = await response.json();
+        return data.employee;
+      } catch (error) {
+        console.error('Error updating employee:', error);
+        throw error;
+      }
+    }
+
+    // Function to populate the form with employee data
+    function populateForm(employee) {
+      document.getElementById('firstName').value = employee.firstName;
+      document.getElementById('lastName').value = employee.lastName;
+      document.getElementById('email').value = employee.email;
+      document.getElementById('department').value = employee.department;
+      document.getElementById('salary').value = employee.salary;
+    }
+
+    // Function to handle form submission
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('email').value;
+      const department = document.getElementById('department').value;
+      const salary = document.getElementById('salary').value;
+
+      const employeeData = {
+        firstName,
+        lastName,
+        email,
+        department,
+        salary,
+      };
+
+      try {
+        const updatedEmployee = await updateEmployee(employeeId, employeeData);
+        alert('Employee updated successfully');
+        window.location.href = './dashboard.html';
+      } catch (error) {
+        console.error('Error handling form submission:', error);
+      }
+    }
+
+    // Event listener for form submission
+    document.getElementById('editEmployeeForm').addEventListener('submit', handleFormSubmit);
+
+    // Fetch employee data and populate the form
+    async function initialize() {
+      try {
+        const employee = await getEmployeeById(employeeId);
+        populateForm(employee);
+      } catch (error) {
+        console.error('Error initializing:', error);
+      }
+    }
+
+    initialize();
+  </script>
+</body>
+</html>
